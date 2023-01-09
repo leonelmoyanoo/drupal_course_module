@@ -1,0 +1,34 @@
+drupal_course.example:
+  path: '/example'
+  defaults:
+    _controller: '\Drupal\drupal_course\Controller\ExampleController::content'
+    _title: 'Example of routing module'
+  requirements:
+    _permission: 'access content'
+drupal_course.example_user:
+  path: '/example/{user}'
+  defaults:
+    _controller: '\Drupal\drupal_course\Controller\ExampleController::content_user'
+    _title: 'Example of routing module with user'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      user:
+        type: entity:user
+drupal_course.example_form:
+  path: '/example_form'
+  defaults:
+    _form: '\Drupal\drupal_course\Form\ExampleForm'
+  requirements:
+    _permission: 'access content'
+drupal_course.example_form_user:
+  path: '/example_form/{user}'
+  defaults:
+    _form: '\Drupal\drupal_course\Form\ExampleFormUser'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      user:
+        type: entity:user

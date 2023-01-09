@@ -1,0 +1,6 @@
+name: Drupal course Module
+description: Custom module for Drupal Course from udemy
+package: Custom
+
+type: module
+core_version_requirement: ^9 || ^10
