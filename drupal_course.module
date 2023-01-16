@@ -1,0 +1,95 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+function drupal_course_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    //ksm($form);
+    //ksm($form_state);
+    //ksm($form_id);
+    if ($form_id == 'node_article_edit_form') {        
+        $form['field_phone_']['widget'][0]['value']['#placeholder'] = 'Set your phone number';
+        
+        
+        $form['field_phone_']['widget'][0]['value']['#attributes']['class'][] = 'new-class';
+        $form['field_phone_']['widget'][0]['value']['#attributes']['style'] = 'background-color:grey;';
+        $form['field_phone_']['widget'][0]['value']['#description'] = 'Complete this field please';
+        $form['field_phone_']['widget'][0]['value']['#required'] = TRUE;
+    
+        // Create a container with fieldset.
+        $form['fieldset_article_data'] = array(
+            '#type' => 'fieldset',
+            '#title' => t('i\'m a title'),
+        );
+        $form['fieldset_article_data']['title'] = $form['title'];
+        $form['fieldset_article_data']['body'] = $form['body'];
+    
+        // Hide fields.
+        hide($form['title']);
+        hide($form['body']);
+    
+        // Using details.
+        $form['seller'] = array(
+            '#type' => 'details',
+            '#title' => t('Seller.'),
+            '#open' => TRUE,
+        );
+    
+        $form['seller'] = array(
+            '#type' => 'details',
+            '#title' => t('Seller.'),
+            '#open' => TRUE,
+        );
+        $form['seller']['field_nombre_y_apellido_anuncian'] = $form['field_nombre_y_apellido_anuncian'];
+        $form['seller']['field_email_anunciant'] = $form['field_email_anunciant'];
+        $form['seller']['field_phone_'] = $form['field_phone_'];
+        hide($form['field_nombre_y_apellido_anuncian']);
+        hide($form['field_email_anunciant']);
+        hide($form['field_phone_']);
+    
+        // Vertical tabs.
+        $form['information'] = array(
+        '#type' => 'vertical_tabs',
+        '#default_tab' => 'edit-publication',
+        '#title' => t('Information'),
+        );
+        
+        $form['details_group_1'] = array(
+            '#type' => 'details',
+            '#title' => t('Group 1.'),
+            '#open' => TRUE,
+            '#group' => 'information',
+        );
+        $form['details_group_1']['field_image'] = $form['field_image'];
+        $form['details_group_1']['field_tags'] = $form['field_tags'];
+        hide($form['field_image']);
+        hide($form['field_tags']);
+    
+    
+        $form['details_group_2'] = array(
+            '#type' => 'details',
+            '#title' => t('Group 2.'),
+            '#open' => TRUE,
+            '#group' => 'information',
+        );
+        $form['details_group_2']['field_p'] = $form['field_p'];
+        $form['details_group_2']['field_packs'] = $form['field_packs'];
+        hide($form['field_p']);
+        hide($form['field_packs']);
+    
+        // Adding submit button.
+        $form['actions']['submit_cancel'] = array(
+            '#type' => 'submit',
+            '#value' => t('Cancel'),
+            '#submit' => ['cancel_ok'],
+            '#weight' => 13
+        );
+    }
+}
+
+function cancel_ok(){
+    \Drupal::messenger()->addMessage(t('Cancelado'));
+    $front = Url::fromRoute('<front>', [], ['absolute' => 'true']);
+    $response = new RedirectResponse($front->toString());
+    $response->send();
+}
