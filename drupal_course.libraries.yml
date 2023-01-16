@@ -1,0 +1,9 @@
+drupal_course_libraries:
+  version: 1.x
+  css:
+    theme:
+      css/drupal_course.css: {}
+  js:
+    js/drupal_course.js: {}
+  dependencies:
+    - core/jquery

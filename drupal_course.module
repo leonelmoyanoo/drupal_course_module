@@ -93,3 +93,10 @@ function cancel_ok(){
     $response = new RedirectResponse($front->toString());
     $response->send();
 }
+
+function drupal_course_cancel_form() {
+    global $base_url;
+    \Drupal::messenger()->addWarning('Action canceled');
+    $response = new RedirectResponse($base_url);
+    $response->send();
+}

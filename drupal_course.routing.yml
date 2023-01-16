@@ -32,3 +32,10 @@ drupal_course.example_form_user:
     parameters:
       user:
         type: entity:user
+drupal_course.form:
+  path: '/drupal_course/addForm'
+  defaults:
+    _title: 'Add form'
+    _form: '\Drupal\drupal_course\Form\addForm'
+  requirements:
+    _permission: 'access content'
