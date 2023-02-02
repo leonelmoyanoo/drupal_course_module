@@ -39,3 +39,67 @@ drupal_course.form:
     _form: '\Drupal\drupal_course\Form\addForm'
   requirements:
     _permission: 'access content'
+drupal_course.content:
+  path: '/drupal_course/hello'
+  defaults:
+    _title: 'Hello page'
+    _controller: '\Drupal\drupal_course\Controller\HelloController::content'
+  requirements:
+    _permission: 'access content'
+drupal_course.page:
+  path: '/drupal_course/page'
+  defaults:
+    _title: 'New page'
+    _controller: '\Drupal\drupal_course\Controller\HelloController::myPage'
+  requirements:
+    _permission: 'access content'
+drupal_course.page1:
+  path: '/drupal_course/page/page1'
+  defaults:
+    _title: 'Page 1'
+    _controller: '\Drupal\drupal_course\Controller\HelloController::myPage1'
+  requirements:
+    _permission: 'access content'
+drupal_course.page_controller:
+  path: '/drupal_course/pageController'
+  defaults:
+    _title: 'Page Controller'
+    _controller: '\Drupal\drupal_course\Controller\PageController::pageFromController'
+  requirements:
+    _permission: 'access content'
+drupal_course.page_id:
+  path: 'drupal_course/page/{id}'
+  defaults:
+    _controller: '\Drupal\drupal_course\Controller\PageController::pageId'
+    _title: 'Page with parameters'
+  requirements:
+    _permission: 'access content'
+drupal_course.custom_page_arg:
+  path: 'drupal_course/custom_page/{customArg}'
+  defaults:
+    _controller: '\Drupal\drupal_course\Controller\PageController::pageCustomArg'
+    customArg: 'custom_parameter'
+    _title: 'Page with custom arguments'
+  requirements:
+    _permission: 'access content'
+drupal_course.page_arguments:
+  path: 'drupal_course/page_arguments'
+  defaults:
+    _controller: '\Drupal\drupal_course\Controller\PageController::pageArguments'
+    _title: 'Page with arguments'
+  requirements:
+    _permission: 'access content'
+drupal_course.form_page:
+  path: 'drupal_course/form_page'
+  defaults:
+    _controller: '\Drupal\drupal_course\Controller\PageController::form'
+    _title: 'Form page'
+  requirements:
+    _permission: 'access content'
+drupal_course.template_twig_page:
+  path: 'drupal_course/template_twig_page'
+  defaults:
+    _controller: '\Drupal\drupal_course\Controller\PageController::template'
+    _title: 'Form page'
+  requirements:
+    _permission: 'access content'

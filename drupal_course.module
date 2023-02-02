@@ -100,3 +100,18 @@ function drupal_course_cancel_form() {
     $response = new RedirectResponse($base_url);
     $response->send();
 }
+
+function drupal_course_theme($existing, $type, $theme, $path) {
+    //dd($existing, $type, $theme, $path);
+
+    return [
+        'my_template' => [
+            'variables' => [
+                'title' => 'Template twig',
+                'description' => 'My description',
+                'my_var' => NULL,
+                'form' => NULL,
+            ]
+        ]
+    ];
+}
